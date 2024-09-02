@@ -322,14 +322,27 @@ class helpers_UnitTestCase(unittest.TestCase):
 
 
     def test_validate_date_timestamp_from_something(self):
-        current_time = time.time()
         TESTS = [
-            (current_time, datetime.date.fromtimestamp(current_time)),
-            (1693622400, datetime.date(2023, 9, 2)),
-            ("1693622400", datetime.date(2023, 9, 2))
+            ('9999-12-30 23:59:59', datetime.datetime(9999, 12, 30).timestamp()),
+            ('2018-01-01 10:01:03', datetime.datetime(2018, 1, 1).timestamp()),
+            ('2018-07-05', datetime.datetime(2018, 7, 5).timestamp()),
+            ('1970-01-01', datetime.datetime(1970, 1, 1).timestamp()),
+            ('1000', datetime.datetime(1970, 1, 1).timestamp()),
+            ('1000.1', datetime.datetime(1970, 1, 1).timestamp()),
+            (datetime.datetime(2023, 9, 1, 14, 0, 0), datetime.datetime(2023, 9, 1).timestamp()),
+            (datetime.date(2023, 9, 1), datetime.datetime(2023, 9, 1).timestamp()),
+            (1000, datetime.datetime(1970, 1, 1).timestamp()),
+            (1000.1, datetime.datetime(1970, 1, 1).timestamp()),
+            ('2018-01-01 10:01:03,', datetime.datetime(2018, 1, 1).timestamp()),
+            ('2018-01-01 10:01:03 hello world', datetime.datetime(2018, 1, 1).timestamp())
         ]
+
         for variant, expected_result in TESTS:
             self.assertEqual(validate_date_timestamp_from_something(variant), expected_result)
+
+
+        self.assertRaises(ValueError, validate_date_timestamp_from_something, 'somebadstring')
+        self.assertRaises(ValueError, validate_date_timestamp_from_something, 253402300800000)
 
 
     def test_recursive_match_extract(self):
