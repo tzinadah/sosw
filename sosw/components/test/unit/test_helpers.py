@@ -321,6 +321,17 @@ class helpers_UnitTestCase(unittest.TestCase):
             self.assertRaises(ValueError, validate_date_from_something, input_type)
 
 
+    def test_validate_date_timestamp_from_something(self):
+        current_time = time.time()
+        TESTS = [
+            (current_time, datetime.date.fromtimestamp(current_time)),
+            (1693622400, datetime.date(2023, 9, 2)),
+            ("1693622400", datetime.date(2023, 9, 2))
+        ]
+        for variant, expected_result in TESTS:
+            self.assertEqual(validate_date_timestamp_from_something(variant), expected_result)
+
+
     def test_recursive_match_extract(self):
         SRC = {
             "bar": [{"page": {"oid": 234}}, {"page": {"code": "exclude_me", "id": 123}},

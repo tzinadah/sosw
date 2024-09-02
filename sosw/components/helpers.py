@@ -394,6 +394,29 @@ def validate_date_from_something(d):
     return validate_datetime_from_something(d).date()
 
 
+def validate_date_timestamp_from_something(timestamp):
+    """
+    Convert the input Unix timestamp to datetime.datetime.
+
+    :param timestamp: Unix timestamp to convert.
+    :type timestamp: int, float or string
+
+    :return: Corresponding datetime.datetime object.
+    :rtype: datetime.datetime
+
+    :raises: ValueError
+    """
+
+    try:
+        if not isinstance(timestamp, (int, float, str)):
+            raise ValueError('Incorrect format of timestamp')
+
+        return datetime.date.fromtimestamp(int(timestamp))
+
+    except (OSError, OverflowError):
+        raise ValueError('Incorrect type of timestamp')
+
+
 def validate_string_matches_datetime_format(date_str, date_format, field_name='date'):
     """
     Validate string, make sure it's of the given datetime format
