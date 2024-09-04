@@ -395,9 +395,9 @@ def validate_date_from_something(d):
     return validate_datetime_from_something(d).date()
 
 
-def validate_date_timestamp_from_something(d):
+def validate_date_timestamp_from_something(d) -> float:
     """
-    Converts the input `d` to timestamp.
+    Converts the input `d` to timestamp of the date rounded.
 
     :param d: Some input. Supported types:
                 * datetime.datetime
@@ -409,7 +409,6 @@ def validate_date_timestamp_from_something(d):
                 * str(epoch time seconds as string)
                 * str(epoch time seconds (float) as string)
     :return: Transformed `d`
-    :rtype: timestamp
     :raises: ValueError
     """
 
