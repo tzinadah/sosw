@@ -42,6 +42,7 @@ __all__ = ['validate_account_to_dashed',
            'validate_date_list_from_event_or_days_back',
            'validate_date_from_something',
            'validate_datetime_from_something',
+           'validate_date_timestamp_from_something',
            'validate_string_matches_datetime_format',
            'is_valid_date',
            'recursive_matches_soft',
@@ -392,6 +393,29 @@ def validate_date_from_something(d):
     """
 
     return validate_datetime_from_something(d).date()
+
+
+def validate_date_timestamp_from_something(d) -> float:
+    """
+    Converts the input `d` to timestamp of the date rounded.
+
+    :param d: Some input. Supported types:
+                * datetime.datetime
+                * datetime.date
+                * int - Epoch or Epoch milliseconds
+                * float - Epoch or Epoch milliseconds
+                * str (YYYY-MM-DD)
+                * str (YYYY-MM-DD HH:MM:SS)
+                * str(epoch time seconds as string)
+                * str(epoch time seconds (float) as string)
+    :return: Transformed `d`
+    :raises: ValueError
+    """
+
+    dt = validate_datetime_from_something(d)
+    date_only = dt.replace(hour=0, minute=0, second=0, microsecond=0)
+
+    return date_only.timestamp()
 
 
 def validate_string_matches_datetime_format(date_str, date_format, field_name='date'):
