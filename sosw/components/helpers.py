@@ -179,6 +179,15 @@ def underscore_to_camel_case(name):
     """
     return re.sub(r'_([a-zA-Z0-9])', lambda match: match.group(1).upper(), name.capitalize())
 
+def camel_case_to_slug(name):
+    """
+    Convert input from camel case to slug case
+
+    :param name:    - str   -   CamleCase string
+    :return:        - str   -   slug-case string
+    """
+    s1 = re.sub('(.)([A-Z][a-z]+)', r'\1-\2', str(name))
+    return re.sub('([a-z0-9])([A-Z])', r'\1-\2', s1).lower()
 
 def chunks(l, n):
     """Yield successive n-sized chunks from l."""
