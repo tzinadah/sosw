@@ -177,8 +177,8 @@ def underscore_to_camel_case(name):
     :param name:    - str   -   snake_case string
     :return:        - str   -   SnakeCase string
     """
-    words = name.split("_")
-    return ''.join(word.capitalize() for word in words)
+    return re.sub(r'_([a-zA-Z0-9])', lambda match: match.group(1).upper(), name.capitalize())
+
 
 def chunks(l, n):
     """Yield successive n-sized chunks from l."""
