@@ -170,6 +170,15 @@ def camel_case_to_underscore(name):
     s1 = re.sub('(.)([A-Z][a-z]+)', r'\1_\2', str(name))
     return re.sub('([a-z0-9])([A-Z])', r'\1_\2', s1).lower()
 
+def underscore_to_camel_case(name):
+    """
+    Convert input from underscore case to camel case
+
+    :param name:    - str   -   snake_case string
+    :return:        - str   -   SnakeCase string
+    """
+    words = name.split("_")
+    return ''.join(word.capitalize() for word in words)
 
 def chunks(l, n):
     """Yield successive n-sized chunks from l."""
