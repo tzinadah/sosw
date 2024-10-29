@@ -12,6 +12,7 @@ os.environ["STAGE"] = "test"
 os.environ["autotest"] = "True"
 
 from sosw.components.helpers import *
+from sosw.components.helpers import underscore_to_camel_case, camel_case_to_slug, slug_to_camel_case
 
 class helpers_UnitTestCase(unittest.TestCase):
 
