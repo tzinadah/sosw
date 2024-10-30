@@ -1162,12 +1162,13 @@ def small_int_from_string(input_string: str, num_digits: int = 2) -> int:
     return int_value % (10 ** num_digits)
 
 
-def slug_to_camel_case(text):
+def slug_to_camel_case(text: str) -> str:
     """
     Split the input text by hyphens to get individual words
     Convert each word to capitalize the first letter and join them to form CamelCase
     
     :return: Resulting CamelCase string
+     
     """
     text = re.sub(r'(?<!^)(?=[A-Z])', '-', text).lower()
     words = text.split('-')
