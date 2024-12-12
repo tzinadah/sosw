@@ -33,6 +33,9 @@ __all__ = ['validate_account_to_dashed',
            'validate_account_to_int',
            'validate_list_of_numbers_from_csv',
            'camel_case_to_underscore',
+           'underscore_to_camel_case,
+           'slug_to_camel_case',
+           'camel_case_to_slug',           
            'chunks',
            'validate_uuid4',
            'rstrip_all',
@@ -65,7 +68,6 @@ __all__ = ['validate_account_to_dashed',
            'unwrap_event_recursively',
            'is_event_from_sqs',
            'small_int_from_string',
-           'slug_to_camel_case',
            ]
 
 import datetime
